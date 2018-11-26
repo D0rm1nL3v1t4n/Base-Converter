@@ -1,5 +1,5 @@
-from Decode import Decode
-from Encode import Encode
+from DecodeMessage import Decode
+from EncodeMessage import Encode
 
 def GetBase():
     base = int(input(">>> Base: "))
@@ -8,7 +8,7 @@ def GetBase():
 def GetOperation():
     operationsList = ListOperations()
     while True:
-        operation = input(">>> Select an operation:")
+        operation = input(">>> Select an operation: ")
         for i in operationsList:
             if operation.lower() == i[0].lower():
                 return i[0]
@@ -32,4 +32,17 @@ def CallOperation(base, operation, message):
 def Main():
     CallOperation(GetBase(), GetOperation(), GetMessage())
         
-Main()
+
+def RunTest():
+    CallOperation(2, "A", "Nimrod")
+
+
+def DoListStuff():
+    arrayOne = ("1","2","3","4","5","6")
+    print(arrayOne)
+    for integer in arrayOne:
+        print(str(integer))
+
+#Main()
+#DoListStuff()
+RunTest()
