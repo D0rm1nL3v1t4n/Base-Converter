@@ -1,5 +1,5 @@
-from DecodeMessage import Decode
-from EncodeMessage import Encode
+from DecodeFunc import Decode
+from EncodeFunc import Encode
 
 def GetBase():
     base = int(input(">>> Base: "))
@@ -14,7 +14,7 @@ def GetOperation():
                 return i[0]
 
 def ListOperations():
-    operations = [["A","Decode"],["B","Encode"]]
+    operations = [["A","Encode"],["B","Decode"]]
     for i in operations:
         print(i[0] + ": " + i[1])
     return operations
@@ -25,24 +25,27 @@ def GetMessage():
 
 def CallOperation(base, operation, message):
     if operation == "A":
-        Decode(base, message)
+        return Encode(base, message)
     elif operation == "B":
-        Encode(base, message)
+        return Decode(base, message)
+
+def OutputNewMessage(returnVal, base):
+    newMessage = ""
+    for characterList in returnVal:
+        i = 0
+        for character in characterList:
+            if (i != 0):
+                newMessage += str(character)
+            i += 1
+        newMessage += " "
+    print("\n\nYour message in base " + str(base) + ":\n" + str(newMessage))
 
 def Main():
-    CallOperation(GetBase(), GetOperation(), GetMessage())
-        
+    base = GetBase()
+    OutputNewMessage(CallOperation(base, GetOperation(), GetMessage()), base)
 
 def RunTest():
-    CallOperation(2, "A", "Nimrod")
+    OutputNewMessage(CallOperation(16, "A", "Nimrod"), 16)
 
-
-def DoListStuff():
-    arrayOne = ("1","2","3","4","5","6")
-    print(arrayOne)
-    for integer in arrayOne:
-        print(str(integer))
-
-#Main()
-#DoListStuff()
-RunTest()
+#RunTest()
+Main()
