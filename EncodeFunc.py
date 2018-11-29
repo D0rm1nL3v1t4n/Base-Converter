@@ -1,5 +1,5 @@
 def Encode(base, message):
-    return GetListBaseValues(base, GetASCII(list(message)))
+    return ConcatenateMessage(GetListBaseValues(base, GetASCII(list(message))))
 
 def GetASCII(message):
     decimals = []
@@ -31,12 +31,18 @@ def ChangeToAsciiCharVal(base, num):
 
 def GetIterationCount(base):
     if (base == 2):
-        return 7
+        return 6
     elif (base == 3):
-        return 5
-    elif (base < 6):
         return 4
-    elif (base < 12):
+    elif (base < 6):
         return 3
-    else:
+    elif (base < 12):
         return 2
+    else:
+        return 1
+
+def ConcatenateMessage(returnVal):
+    newMessage = ""
+    for character in returnVal:
+        newMessage += character + " "
+    return newMessage

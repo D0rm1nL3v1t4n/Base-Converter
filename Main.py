@@ -1,5 +1,5 @@
-from DecodeFunc import Decode
 from EncodeFunc import Encode
+from DecodeFunc import Decode
 
 def GetBase():
     base = int(input(">>> Base: "))
@@ -25,27 +25,22 @@ def GetMessage():
 
 def CallOperation(base, operation, message):
     if operation == "A":
-        return Encode(base, message)
+        OutNewBaseMessage(Encode(base, message), base) 
     elif operation == "B":
-        return Decode(base, message)
+        OutputDecimalMessage(Decode(base, message))
 
-def OutputNewMessage(returnVal, base):
-    newMessage = ""
-    for characterList in returnVal:
-        i = 0
-        for character in characterList:
-            if (i != 0):
-                newMessage += str(character)
-            i += 1
-        newMessage += " "
+def OutNewBaseMessage(newMessage, base):
     print("\n\nYour message in base " + str(base) + ":\n" + str(newMessage))
 
+def OutputDecimalMessage(newMessage):
+    print("\n\nYour message in base 10:\n" + str(newMessage))
+
 def Main():
-    base = GetBase()
-    OutputNewMessage(CallOperation(base, GetOperation(), GetMessage()), base)
+    CallOperation(GetBase(), GetOperation(), GetMessage())
 
 def RunTest():
-    OutputNewMessage(CallOperation(16, "A", "Nimrod"), 16)
+    CallOperation(2, "A", "Nimrod!")
+    CallOperation(2, "B", "1001110 1101001 1101101 1110010 1101111 1100100 0100001")
 
 #RunTest()
 Main()
